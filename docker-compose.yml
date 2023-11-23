@@ -9,6 +9,13 @@ services:
     environment:
       - SAGEMAKER_PROGRAM=my-custom-training-script.py
       - SAGEMAKER_SUBMIT_DIRECTORY=/opt/ml/code
+      - SM_INPUT_DIR=/opt/ml/input
+      - SM_MODEL_DIR=/opt/ml/output/data
+      - SM_OUTPUT_DATA_DIR=/opt/ml/output/data
     volumes:
       - ./src:/opt/ml/code
+      - ./data/input:/opt/ml/input/data/training
+      - ./data/output-compose/model:/opt/ml/model
+      - ./data/output-compose/data:/opt/ml/output/data
     working_dir: /opt/ml/code
+    
